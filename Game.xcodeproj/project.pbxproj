@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4719098C29BCB18200EE96FB /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4719098B29BCB18200EE96FB /* Game.swift */; };
 		47917E7529BC7A180007D5D4 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47917E7429BC7A180007D5D4 /* main.swift */; };
 		47917E7C29BC7A610007D5D4 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47917E7B29BC7A610007D5D4 /* Weapon.swift */; };
 		47917E7F29BC7B160007D5D4 /* WeaponSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47917E7E29BC7B160007D5D4 /* WeaponSpecification.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4719098B29BCB18200EE96FB /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		47917E7129BC7A180007D5D4 /* Game */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Game; sourceTree = BUILT_PRODUCTS_DIR; };
 		47917E7429BC7A180007D5D4 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		47917E7B29BC7A610007D5D4 /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				47917E7429BC7A180007D5D4 /* main.swift */,
+				4719098B29BCB18200EE96FB /* Game.swift */,
 				47917E9129BC824B0007D5D4 /* Player.swift */,
 				47917E8829BC7EF20007D5D4 /* CHARACTER */,
 				47917E7D29BC7A680007D5D4 /* WEAPON */,
@@ -194,6 +197,7 @@
 				47917E8A29BC7F0A0007D5D4 /* Character.swift in Sources */,
 				47917E8C29BC80350007D5D4 /* Magus.swift in Sources */,
 				47917E7F29BC7B160007D5D4 /* WeaponSpecification.swift in Sources */,
+				4719098C29BCB18200EE96FB /* Game.swift in Sources */,
 				47917E9029BC81A00007D5D4 /* Warrior.swift in Sources */,
 				47917E7529BC7A180007D5D4 /* main.swift in Sources */,
 				47917E8129BC7BBA0007D5D4 /* Axe.swift in Sources */,
