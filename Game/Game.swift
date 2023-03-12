@@ -17,11 +17,13 @@ class Game {
         initPlayer()
     }
 
-    // Init of the player: ask for name , ask for team and create player
+    // Init of the player:
+    // ask for name , ask for team and create player
     private func initPlayer() {
         for turn in 0...numberOfPlayerInTheGame-1 {
             print("\nQuel est votre nom Joueur \(turn+1)")
-            let name = readLine() ?? ""
+            let name = getPlayerName()
+            print("\nBonjour \(name)")
 
             let team = getTeam()
 
@@ -45,7 +47,7 @@ class Game {
         var team = [Character]()
 
         for turn in 0...numberOfCharacterInTeam-1 {
-            print("\nveuillez choisir votre personnage numero \(turn+1)")
+            print("veuillez choisir votre personnage numero \(turn+1)")
             let charactereType = askForCharacterType()
             print("veuillez choisir le nom du personnage")
             let charactereName = askForCharacterName()
@@ -65,9 +67,11 @@ class Game {
     private func askForCharacterType() -> Int {
         var selectedNumber: Int
         repeat {
-        Character.showCharacterList()
-        selectedNumber = Int(readLine() ?? "") ?? 0
-        if (selectedNumber == 0)||(selectedNumber > 3) {print("erreur de saisie")}
+            Character.showCharacterList()
+            selectedNumber = Int(readLine() ?? "") ?? 0
+            if (selectedNumber == 0)||(selectedNumber > 3) {
+                print("erreur de saisie")
+            }
         }while ( selectedNumber == 0)||( selectedNumber > 3)
         return selectedNumber
     }
@@ -75,6 +79,19 @@ class Game {
     // ask to the player for the name of the character
     private func askForCharacterName() -> String {
         let name = readLine() ?? ""
+        return name
+    }
+
+    // ask player for his name
+    // check if player insert a name and if this name is not used by other player
+    private func getPlayerName() -> String {
+        let name = readLine() ?? ""
+        guard name != "" else {print("erreur de saisie, recommencer"); return getPlayerName()}
+        guard self.player.isEmpty == false else {return name}
+        for character in self.player where character.name.lowercased() == name.lowercased() {
+            print("nom déja utilisé, merci de choisir un autre nom")
+            return getPlayerName()
+        }
         return name
     }
 }
