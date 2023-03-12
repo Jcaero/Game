@@ -22,6 +22,7 @@ class Character {
         self.weapon = weapon
     }
 
+    // print the available charatere in the game
     static func showCharacterList() {
         print("1. Warrior: un combatant avec 100 points de vie et une épée de force 10")
         print("2. Dwarf: un nain avec 50 points de vie et une hache de force 30")
