@@ -19,14 +19,22 @@ class Game {
 
     // Init of the player: ask for name , ask for team and create player
     private func initPlayer() {
-        for player in 0...numberOfPlayerInTheGame-1 {
-            print("quel est votre nom Joueur \(player+1)")
+        for turn in 0...numberOfPlayerInTheGame-1 {
+            print("\nQuel est votre nom Joueur \(turn+1)")
             let name = readLine() ?? ""
 
             let team = getTeam()
 
             self.player.append(Player(name: name, team: team))
-            print("joueur \(player+1) créé")
+            print("\(name), votre équipe est complète")
+        }
+
+        print("\nJeu initialisé, voici les équipes")
+        for turn in 0...numberOfPlayerInTheGame-1 {
+            self.player[turn].showPlayerTeam()
+            if turn != numberOfPlayerInTheGame-1 {
+                print("\ncontre")
+            }
         }
     }
 
@@ -36,8 +44,8 @@ class Game {
     private func getTeam() -> [Character] {
         var team = [Character]()
 
-        for tour in 0...numberOfCharacterInTeam-1 {
-            print("veuillez choisir votre personnage numero \(tour+1)")
+        for turn in 0...numberOfCharacterInTeam-1 {
+            print("\nveuillez choisir votre personnage numero \(turn+1)")
             let charactereType = askForCharacterType()
             print("veuillez choisir le nom du personnage")
             let charactereName = askForCharacterName()
@@ -48,7 +56,7 @@ class Game {
             case 3 : team.append(Magus(name: charactereName))
             default: print("erreur ")
             }
-            print("vous avez crée \(team[tour].name) de type \(team[tour].type)\n")
+            print("vous avez crée \(team[turn].name) de type \(team[turn].type)")
         }
         return team
     }
@@ -69,5 +77,4 @@ class Game {
         let name = readLine() ?? ""
         return name
     }
-
 }

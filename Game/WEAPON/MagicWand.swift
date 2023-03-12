@@ -9,6 +9,6 @@ import Foundation
 
 class MagicWand: Weapon {
     init() {
-        super.init(name: "Baguette magic", value: 8, specification: .care)
+        super.init(name: "Baguette magique", value: 8, specification: .care)
     }
 }

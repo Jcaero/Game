@@ -15,4 +15,10 @@ class Magus: Character {
     init(name: String) {
         super.init(name: name, type: "Mage", health: 300, weapon: Sword(value: 5))
     }
+
+    //
+    override func showCharacterStatistic() {
+        super.showCharacterStatistic()
+        print("capacité de soin de \(self.secondWeapon.value) points de vie avec sa \(self.secondWeapon.name)")
+    }
 }

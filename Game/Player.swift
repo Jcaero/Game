@@ -17,4 +17,11 @@ class Player {
         self.name = name
         self.team = team
     }
+
+    func showPlayerTeam() {
+        print("\n\(self.name), votre équipe est composée de:")
+        for character in self.team {
+            character.showCharacterStatistic()
+        }
+    }
 }

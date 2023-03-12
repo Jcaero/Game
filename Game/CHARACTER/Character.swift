@@ -26,8 +26,13 @@ class Character {
     static func showCharacterList() {
         print("1. Warrior: un combatant avec 100 points de vie et une épée de force 10")
         print("2. Dwarf: un nain avec 50 points de vie et une hache de force 30")
-        print("3. Magus: un mage avec 300 points de vie et une épée de 8 points")
+        print("3. Magus: un mage avec 300 points de vie et une épée de 5 points")
         print("          il peut soigner de 8 points de vie un personnage avec sa baguette magique")
+    }
+
+    // show statistic of the charactere
+    func showCharacterStatistic() {
+        print("\(self.name), un \(self.type) : \(self.health) point de vie / attaque de \(self.weapon.value)")
     }
 
 }
