@@ -79,6 +79,19 @@ class Game {
     // ask to the player for the name of the character
     private func askForCharacterName() -> String {
         let name = readLine() ?? ""
+        guard name != "" else {
+            print("erreur de saisie, recommencer")
+            return askForCharacterName()
+        }
+        guard Character.names.isEmpty == false else {
+            Character.names.append(name.lowercased())
+            return name
+        }
+        for storedName in Character.names where storedName == name.lowercased() {
+            print("nom déja utilisé, merci de choisir un autre nom")
+            return askForCharacterName()
+        }
+        Character.names.append(name.lowercased())
         return name
     }
 

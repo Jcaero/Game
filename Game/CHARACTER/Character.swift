@@ -14,6 +14,8 @@ class Character {
     var health: Int
     let weapon: Weapon
 
+    static var names: [String] = []
+
     // INIT
     init(name: String, type: String, health: Int, weapon: Weapon) {
         self.name = name
