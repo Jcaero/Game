@@ -9,6 +9,6 @@ import Foundation
 
 class Axe: Weapon {
     init() {
-        super.init(name: "hache", value: 30, specification: .attack)
+        super.init(name: "hache", value: 500, specification: .attack)
     }
 }

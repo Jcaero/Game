@@ -18,10 +18,21 @@ class Player {
         self.team = team
     }
 
+    // show all of the player team
     func showPlayerTeam() {
-        print("\n\(self.name), votre équipe est composée de:")
+        var position = 1
         for character in self.team {
-            character.showCharacterStatistic()
+            character.showCharacterStatistic(inPosition: position)
+            position += 1
         }
+    }
+
+    // check if player have at least one character alive
+    func isAlive() -> Bool {
+        var result = false
+        for character in self.team where character.health > 0 {
+            result = true
+        }
+        return result
     }
 }

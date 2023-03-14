@@ -15,6 +15,7 @@ class Game {
 
     init() {
         initPlayer()
+        fight()
     }
 
     // Init of the player:
@@ -32,17 +33,20 @@ class Game {
         }
 
         print("\nJeu initialisé, voici les équipes")
+
+        showPlayersTeam()
+        /*
         for turn in 0...numberOfPlayerInTheGame-1 {
+            print("\n\(self.player[turn].name), votre équipe est composée de:")
             self.player[turn].showPlayerTeam()
             if turn != numberOfPlayerInTheGame-1 {
                 print("\ncontre")
             }
-        }
+        }*/
     }
 
     // ask player for character type and charactere name
     // and stock in the Array team
-    // player can choose numberOfCharacterInTeam character in a team
     private func getTeam() -> [Character] {
         var team = [Character]()
 
@@ -63,17 +67,11 @@ class Game {
         return team
     }
 
+    // show the character available
     // ask the player for the number of character type : 1, Warrior 2 Dwarf 3 Magus
     private func askForCharacterType() -> Int {
-        var selectedNumber: Int
-        repeat {
-            Character.showCharacterList()
-            selectedNumber = Int(readLine() ?? "") ?? 0
-            if (selectedNumber == 0)||(selectedNumber > 3) {
-                print("erreur de saisie")
-            }
-        }while ( selectedNumber == 0)||( selectedNumber > 3)
-        return selectedNumber
+        Character.showCharacterList()
+        return selectedNumber(to: 3)
     }
 
     // ask to the player for the name of the character
@@ -106,5 +104,104 @@ class Game {
             return getPlayerName()
         }
         return name
+    }
+
+    // start fight
+    private func fight() {
+        var attackingCharacter: Int
+        var defensiveCharacter: Int
+        var weaponValue: Int
+        var weaponSpecification: WeaponSpecification = .attack
+
+//        attackingPlayer = whoIsStarted()
+ //       defensivePlayer = (attackingPlayer == 1) ? 0 : 1
+
+        print("\n \(self.player[0].name) commence le jeu")
+
+        repeat {
+            print("\n\(self.player[0].name), vous pouvez attaquer avec:")
+            attackingCharacter = selectCharacterAlive(player: self.player[0])
+            print("vous avez selectionné \(self.player[0].team[attackingCharacter].name), un \(self.player[0].team[attackingCharacter].type)")
+
+        if self.player[0].team[attackingCharacter].type == "Mage" {
+        weaponSpecification = chooseWhichWeaponSpecification()
+        }
+
+        switch weaponSpecification {
+        case .attack:
+            weaponValue = self.player[0].team[attackingCharacter].weapon.value
+
+            print("vous pouvez attaquer le personnage de \(self.player[1].name) suivant:")
+            defensiveCharacter = selectCharacterAlive(player: self.player[1])
+            print("vous avez selectionné \(self.player[1].team[defensiveCharacter].name), un \(self.player[1].team[defensiveCharacter].type)")
+
+            self.player[1].team[defensiveCharacter].beAttackWithValue(valeur: weaponValue )
+
+        case .care:
+            print("vous pouvez soigner le personnage suivant:")
+            attackingCharacter = selectCharacterAlive(player: self.player[0])
+            print("vous avez selectionné \(self.player[0].team[attackingCharacter].name), un \(self.player[0].team[attackingCharacter].type)")
+            self.player[0].team[attackingCharacter].beCare()
+            weaponSpecification = .attack
+        }
+
+            self.player.swapAt(0, 1)
+        }while self.player[0].isAlive()
+        showPlayersTeam()
+    }
+
+    // choose witch player start
+    // return number of attack
+    private func whoIsStarted() -> Int {
+        return Int.random(in: 0..<2)
+    }
+
+    // selected character alive during the fight
+    // return position in the Array
+    private func selectCharacterAlive(player: Player) -> Int {
+        var number: Int
+        player.showPlayerTeam()
+        print("Sélectionner votre personnage")
+        number = selectedNumber(to: 3)
+        if player.team[number-1].health == 0 {
+            print("le joueur selectionné est mort, merci de choisir un autre joueur")
+            return selectCharacterAlive(player: player)
+        }
+        return number-1
+    }
+
+    // selected weapon specification care or attack
+    private func chooseWhichWeaponSpecification() -> WeaponSpecification {
+        print("""
+            vous voulez soigner ou attaquer ?
+                1. soigner
+                2. attaquer
+            """)
+        switch selectedNumber(to: 2) {
+        case 1: return .care
+        case 2: return .attack
+        default: return .attack
+        }
+    }
+
+    // check if player give a right number between 1 to number
+    private func selectedNumber(to number: Int) -> Int {
+        let readNumber = Int(readLine() ?? "") ?? 0
+        if (readNumber == 0)||(readNumber > number) {
+            print("nombre non valide")
+            return selectedNumber(to: number)
+            }
+        return readNumber
+    }
+
+    // show player team
+    func showPlayersTeam() {
+        for turn in 0...numberOfPlayerInTheGame-1 {
+            print("\n\(self.player[turn].name), votre équipe est composée de:")
+            self.player[turn].showPlayerTeam()
+            if turn != numberOfPlayerInTheGame-1 {
+                print("\ncontre")
+            }
+        }
     }
 }
