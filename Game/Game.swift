@@ -35,14 +35,6 @@ class Game {
         print("\nJeu initialisé, voici les équipes")
 
         showPlayersTeam()
-        /*
-        for turn in 0...numberOfPlayerInTheGame-1 {
-            print("\n\(self.player[turn].name), votre équipe est composée de:")
-            self.player[turn].showPlayerTeam()
-            if turn != numberOfPlayerInTheGame-1 {
-                print("\ncontre")
-            }
-        }*/
     }
 
     // ask player for character type and charactere name
@@ -97,6 +89,7 @@ class Game {
     // check if player insert a name and if this name is not used by other player
     private func getPlayerName() -> String {
         let name = readLine() ?? ""
+       
         guard name != "" else {print("erreur de saisie, recommencer"); return getPlayerName()}
         guard self.player.isEmpty == false else {return name}
         for character in self.player where character.name.lowercased() == name.lowercased() {
@@ -113,10 +106,7 @@ class Game {
         var weaponValue: Int
         var weaponSpecification: WeaponSpecification = .attack
 
-//        attackingPlayer = whoIsStarted()
- //       defensivePlayer = (attackingPlayer == 1) ? 0 : 1
-
-        print("\n \(self.player[0].name) commence le jeu")
+        whoIsStarted()
 
         repeat {
             print("\n\(self.player[0].name), vous pouvez attaquer avec:")
@@ -152,21 +142,22 @@ class Game {
 
     // choose witch player start
     // return number of attack
-    private func whoIsStarted() -> Int {
-        return Int.random(in: 0..<2)
+    private func whoIsStarted() {
+        if Bool.random() {
+            self.player.swapAt(0, 1)
+        }
+        print("\n \(self.player[0].name) commence le jeu")
     }
 
-    // selected character alive during the fight
+    // FUNC selected character alive during the fight
+    // show character alive
+    // identifie the number of charater alive and player can only select the number
     // return position in the Array
     private func selectCharacterAlive(player: Player) -> Int {
         var number: Int
-        player.showPlayerTeam()
+        player.showPlayerTeamAlive()
         print("Sélectionner votre personnage")
-        number = selectedNumber(to: 3)
-        if player.team[number-1].health == 0 {
-            print("le joueur selectionné est mort, merci de choisir un autre joueur")
-            return selectCharacterAlive(player: player)
-        }
+        number = selectedNumber(to: player.nombreOfCharacterAlive())
         return number-1
     }
 
