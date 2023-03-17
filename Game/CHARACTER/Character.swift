@@ -36,9 +36,9 @@ class Character {
     func showCharacterStatistic(inPosition position: Int) {
         if self.health > 0 {
         print("\(position). \(self.name), un \(self.type) : \(self.health) point de vie / attaque de \(self.weapon.value)")
-        } else {
+        }/* else {
         print("\(self.name) est mort")
-        }
+        }*/
     }
 
     // be attack with a weapon value
