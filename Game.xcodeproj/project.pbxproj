@@ -82,13 +82,13 @@
 				47917E7429BC7A180007D5D4 /* main.swift */,
 				4719098B29BCB18200EE96FB /* Game.swift */,
 				47917E9129BC824B0007D5D4 /* Player.swift */,
-				47917E8829BC7EF20007D5D4 /* CHARACTER */,
-				47917E7D29BC7A680007D5D4 /* WEAPON */,
+				47917E8829BC7EF20007D5D4 /* Character */,
+				47917E7D29BC7A680007D5D4 /* Weapon */,
 			);
 			path = Game;
 			sourceTree = "<group>";
 		};
-		47917E7D29BC7A680007D5D4 /* WEAPON */ = {
+		47917E7D29BC7A680007D5D4 /* Weapon */ = {
 			isa = PBXGroup;
 			children = (
 				47917E7B29BC7A610007D5D4 /* Weapon.swift */,
@@ -97,10 +97,10 @@
 				47917E8429BC7E770007D5D4 /* Sword.swift */,
 				47917E8629BC7EB30007D5D4 /* MagicWand.swift */,
 			);
-			path = WEAPON;
+			path = Weapon;
 			sourceTree = "<group>";
 		};
-		47917E8829BC7EF20007D5D4 /* CHARACTER */ = {
+		47917E8829BC7EF20007D5D4 /* Character */ = {
 			isa = PBXGroup;
 			children = (
 				47917E8929BC7F0A0007D5D4 /* Character.swift */,
@@ -108,7 +108,7 @@
 				47917E8D29BC81190007D5D4 /* Dwarf.swift */,
 				47917E8F29BC81A00007D5D4 /* Warrior.swift */,
 			);
-			path = CHARACTER;
+			path = Character;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

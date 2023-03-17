@@ -20,30 +20,30 @@ class Player {
 
     // show all of the player team
     func showPlayerTeam() {
-        var position = 1
-        for character in self.team {
-            character.showCharacterStatistic(inPosition: position)
-            position += 1
+        for (index, character) in team.enumerated() {
+            let description = character.getDescriptionWithName()
+            print("\(index + 1). \(description)")
         }
     }
 
-    // show all of the player team alive
+    // put dead people at the bottom of the array
+    // display alive character
     func showPlayerTeamAlive() {
         organizeCharacterInTeam()
-        showPlayerTeam()
+
+        for (index, character) in team.enumerated() where character.health != 0 {
+            let description = character.getDescriptionWithName()
+            print("\(index + 1). \(description)")
+        }
     }
 
     // Put the dead character in the end of the array
     func organizeCharacterInTeam() {
-        var index = 0
-        for character in self.team {
-            if character.health == 0 {
-            let removeCharacter = self.team[index]
-            self.team.remove(at: index)
-            self.team.append(removeCharacter)
-            return
-            }
-            index += 1
+        for (index, character) in team.enumerated() where character.health == 0 {
+                let removeCharacter = team[index]
+                team.remove(at: index)
+                team.append(removeCharacter)
+                return
         }
     }
 
