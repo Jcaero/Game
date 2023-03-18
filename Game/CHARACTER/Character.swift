@@ -24,7 +24,8 @@ class Character {
         self.weapon = weapon
     }
 
-    // return generique description of the character
+    // show description of character
+    // return in String format
     func getDescription() -> String {
         return "\(type): un combatant avec \(health) points de vie et une \(weapon.name) de force \(weapon.value)"
     }

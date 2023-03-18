@@ -12,10 +12,13 @@ class Game {
     var players = [Player]()
     let numberOfPlayerInTheGame = 2
     let numberOfCharacterInTeam = 3
+    var numberOfTurn = 0.0
+    
 
     init() {
         initPlayer()
         fight()
+        statistic()
     }
 
     // Init of the player:
@@ -72,8 +75,14 @@ class Game {
             attacked = players[1]
 
         } while attacker.isAlive()
-
-        print("\n\(attacked.name) gagne la partie ")
+    }
+    
+    private func statistic(){
+        let winner = players[1]
+        let looser = players[0]
+        
+        
+        print("\n\(winner.name) gagne la partie en  ")
     }
 
     // ask player for character type and charactere name
