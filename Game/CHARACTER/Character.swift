@@ -40,10 +40,10 @@ class Character {
 
         if health <= value {
             health = 0
-            print("\(name) est mort")
+            print("\(name) a été attaqué par \(character.name) et il est mort")
         } else {
             health -= value
-            print("\(name) a perdu \(value) points de vie")
+            print("\(name) a été attaqué par \(character.name) et il a perdu \(value) points de vie")
         }
     }
 
