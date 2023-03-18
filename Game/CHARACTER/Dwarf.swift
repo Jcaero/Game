@@ -11,7 +11,7 @@ class Dwarf: Character {
     init(name: String) {
         super.init(name: name, type: "Nain", health: 50, weapon: Axe())
     }
-    
+
     convenience init() {
         self.init(name: "")
     }

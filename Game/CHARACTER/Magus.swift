@@ -27,7 +27,7 @@ class Magus: Character {
                         """
         return description
     }
-    
+
     override func getDescriptionWithName() -> String {
         return "\(name), un \(type) : \(health) point de vie / attaque de \(weapon.value) / soin de \(secondWeapon.value)"
     }

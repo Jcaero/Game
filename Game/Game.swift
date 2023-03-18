@@ -12,8 +12,6 @@ class Game {
     var players = [Player]()
     let numberOfPlayerInTheGame = 2
     let numberOfCharacterInTeam = 3
-    var numberOfTurn = 0.0
-    
 
     init() {
         initPlayer()
@@ -70,19 +68,29 @@ class Game {
                 offensiveCharacter.beCare()
             }
 
+            let weaponValue = offensiveCharacter.weapon.value
+            attacker.increaseStratistic(with: weaponSpecification, value: weaponValue)
+
             players.swapAt(0, 1)
             attacker = players[0]
             attacked = players[1]
 
         } while attacker.isAlive()
     }
-    
-    private func statistic(){
+
+    private func statistic() {
         let winner = players[1]
         let looser = players[0]
-        
-        
-        print("\n\(winner.name) gagne la partie en  ")
+
+        print("\n\(winner.name) gagne la partie en \(winner.turn) tours")
+        print("il a attaqué \(winner.attackturn) fois, pour une puissance de \(winner.strength)")
+        print("il a soigné \(winner.careTurn) fois")
+        print("voici son équipe")
+        winner.showPlayerTeam()
+
+        print("\n\(looser.name) a perdu")
+        print("voici son équipe")
+        looser.showPlayerTeam()
     }
 
     // ask player for character type and charactere name

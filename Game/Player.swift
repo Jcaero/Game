@@ -11,6 +11,12 @@ class Player {
     // Properties
     let name: String
     var team: [Character]
+    
+    // statistic
+    var turn: Int = 0
+    var careTurn: Int = 0
+    var attackturn: Int { return turn - careTurn }
+    var strength: Int = 0
 
     // INIT
     init(name: String, team: [Character]) {
@@ -63,5 +69,14 @@ class Player {
             number += 1
         }
         return number
+    }
+
+    // upgrade statistic
+    func increaseStratistic(with specification: WeaponSpecification, value: Int) {
+        turn += 1
+        switch specification {
+        case .care: careTurn += 1
+        case .attack:strength += value
+        }
     }
 }
