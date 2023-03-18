@@ -73,7 +73,7 @@ class Game {
 
         } while attacker.isAlive()
 
-        print("\(attacked.name) gagne la partie ")
+        print("\n\(attacked.name) gagne la partie ")
     }
 
     // ask player for character type and charactere name
@@ -173,7 +173,7 @@ class Game {
         print("Sélectionner votre personnage")
         let index = getNumber(withMax: number) - 1
 
-        print("vous avez selectionné \(player.team[index].name), un \(player.team[index].type)")
+        print("vous avez selectionné \(player.team[index].name), un \(player.team[index].type)\n")
         return player.team[index]
     }
 
