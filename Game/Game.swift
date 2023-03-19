@@ -19,38 +19,44 @@ class Game {
         statistic()
     }
 
-    // Init of the player:
-    // ask for name , ask for team and create player
+    // Init of the 2 players
     private func initPlayer() {
         let maxPlayer = numberOfPlayerInTheGame - 1
         for index in 0...maxPlayer {
             print("\nQuel est votre nom Joueur \(index + 1)")
 
+            // ask for player name
             let name = getPlayerName()
             print("\nBonjour \(name)")
 
+            // ask for team of 3 characters
             let team = getTeam()
 
+            // create player
             self.players.append(Player(name: name, team: team))
             print("\(name), votre équipe est complète")
         }
 
         print("\nJeu initialisé, voici les équipes")
 
+        // show the team of the 2 players
         displayPlayersTeam()
     }
 
     // start fight
     private func fight() {
+        // define who began the fight
         whoIsStarted()
 
         var attacker = players[0]
         var attacked = players[1]
 
         repeat {
+            // select attacking character in attacker player
             print("\n\(attacker.name), vous pouvez attaquer avec:")
             let offensiveCharacter = getAliveCharacter(from: attacker)
 
+            // choose action attack or care if magus selected
             var weaponSpecification: WeaponSpecification = .attack
             if offensiveCharacter.type == "Mage" {
                 weaponSpecification = chooseWhichWeaponSpecification()
@@ -58,26 +64,32 @@ class Game {
 
             switch weaponSpecification {
             case .attack:
+                // select a character to be attacking in attacked player
                 print("vous pouvez attaquer le personnage de \(attacked.name) suivant:")
                 let defensiveCharacter = getAliveCharacter(from: attacked)
                 defensiveCharacter.beAttacked(by: offensiveCharacter)
 
             case .care:
+                // select character to care in attacking team
                 print("vous pouvez soigner le personnage suivant:")
                 let offensiveCharacter = getAliveCharacter(from: attacker)
                 offensiveCharacter.beCare()
             }
 
+            // increase statistic of attacker player
             let weaponValue = offensiveCharacter.weapon.value
             attacker.increaseStratistic(with: weaponSpecification, value: weaponValue)
 
+            // change player who attack
             players.swapAt(0, 1)
             attacker = players[0]
             attacked = players[1]
 
+            // fight until player had no character alive
         } while attacker.isAlive()
     }
 
+    // show staistic of the 2 players
     private func statistic() {
         let winner = players[1]
         let looser = players[0]
@@ -94,18 +106,21 @@ class Game {
     }
 
     // ask player for character type and charactere name
-    // and stock in the Array team
+    // return a array of character selected
     private func getTeam() -> [Character] {
         var team = [Character]()
         let maxCharacter = numberOfCharacterInTeam - 1
 
         for index in 0...maxCharacter {
+            // ask player to select a character Type
             print("veuillez choisir votre personnage numero \(index + 1)")
             let charactereType = getCharacterType()
 
+            // ask player to write a name
             print("veuillez choisir le nom du personnage")
-            let charactereName = askForCharacterName()
+            let charactereName = getCharacterName()
 
+            // create character selected
             switch charactereType {
             case "Guerrier" : team.append(Warrior(name: charactereName))
             case "Nain" : team.append(Dwarf(name: charactereName))
@@ -117,55 +132,70 @@ class Game {
         return team
     }
 
-    // show the character available
-    // ask the player for the number of character
+    // ask player for selected a character type
+    // return a character type
     private func getCharacterType() -> String {
+        // create available character in game
         let characters = [Warrior(), Dwarf(), Magus()]
 
+        // show description of available character
         for (index, character) in characters.enumerated() {
             let description = character.getDescription()
             print("\(index + 1). \(description)")
         }
+
+        // get player's choice
         let selection = getNumber(withMax: characters.count) - 1
+
+        // return type selected
         let type = characters[selection].type
         return type
     }
 
     // ask to the player for the name of the character
-    private func askForCharacterName() -> String {
+    // return name
+    private func getCharacterName() -> String {
 
+        // get name
         let name = readLine() ?? ""
-        guard name != "" else {
+
+        // check if player write something
+        guard name.isEmpty == false else {
             print("erreur de saisie, recommencer")
-            return askForCharacterName()
+            return getCharacterName()
         }
-        guard Character.names.isEmpty == false else {
-            Character.names.append(name.lowercased())
-            return name
-        }
+
+        // check if name is not already used
         for storedName in Character.names where storedName == name.lowercased() {
             print("nom déja utilisé, merci de choisir un autre nom")
-            return askForCharacterName()
+            return getCharacterName()
         }
+
+        // store name for the next check
         Character.names.append(name.lowercased())
+
+        // return name of character
         return name
     }
 
     // ask player for his name
-    // check if player insert a name and if this name is not used by other player
+    // return name
     private func getPlayerName() -> String {
+        // get player name
         let name = readLine() ?? ""
 
+        // check if player write something
         guard name.isEmpty == false else {
             print("erreur de saisie, recommencer")
             return getPlayerName()
         }
 
-        for character in self.players where character.name.lowercased() == name.lowercased() {
+        // check if name is not already used
+        for character in players where character.name.lowercased() == name.lowercased() {
             print("nom déja utilisé, merci de choisir un autre nom")
             return getPlayerName()
         }
-
+        // return name of player
         return name
     }
 
