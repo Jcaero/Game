@@ -11,7 +11,7 @@ class Player {
     // Properties
     let name: String
     var team: [Character]
-    
+
     // statistic during a game
     var turn: Int = 0
     var careTurn: Int = 0

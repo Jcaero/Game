@@ -11,7 +11,7 @@ class Warrior: Character {
     init(name: String) {
         super.init(name: name, type: "Guerrier", health: 100, weapon: Sword(value: 10))
     }
-    
+
     convenience init() {
         self.init(name: "")
     }

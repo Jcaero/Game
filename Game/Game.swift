@@ -23,11 +23,9 @@ class Game {
     private func initPlayer() {
         let maxPlayer = numberOfPlayerInTheGame - 1
         for index in 0...maxPlayer {
-            print("\nQuel est votre nom Joueur \(index + 1)")
 
             // ask for player name
-            let name = getPlayerName()
-            print("\nBonjour \(name)")
+            let name = getPlayerName(forPlayer: index + 1)
 
             // ask for team of 3 characters
             let team = getTeam()
@@ -112,12 +110,11 @@ class Game {
         let maxCharacter = numberOfCharacterInTeam - 1
 
         for index in 0...maxCharacter {
+            
             // ask player to select a character Type
-            print("veuillez choisir votre personnage numero \(index + 1)")
-            let charactereType = getCharacterType()
+            let charactereType = getCharacterType(number: index + 1)
 
             // ask player to write a name
-            print("veuillez choisir le nom du personnage")
             let charactereName = getCharacterName()
 
             // create character selected
@@ -127,18 +124,19 @@ class Game {
             case "Mage" : team.append(Magus(name: charactereName))
             default: print("erreur ")
             }
-            print("vous avez crée \(team[index].name) de type \(team[index].type)")
+            print("vous avez crée \(team[index].name) de type \(team[index].type)\n")
         }
         return team
     }
 
     // ask player for selected a character type
     // return a character type
-    private func getCharacterType() -> String {
+    private func getCharacterType(number: Int) -> String {
         // create available character in game
         let characters = [Warrior(), Dwarf(), Magus()]
 
         // show description of available character
+        print("veuillez choisir votre personnage numero \(number)")
         for (index, character) in characters.enumerated() {
             let description = character.getDescription()
             print("\(index + 1). \(description)")
@@ -156,6 +154,7 @@ class Game {
     private func getCharacterName() -> String {
 
         // get name
+        print("veuillez choisir le nom du personnage")
         let name = readLine() ?? ""
 
         // check if player write something
@@ -166,7 +165,7 @@ class Game {
 
         // check if name is not already used
         for storedName in Character.names where storedName == name.lowercased() {
-            print("nom déja utilisé, merci de choisir un autre nom")
+            print("nom déja utilisé")
             return getCharacterName()
         }
 
@@ -179,22 +178,24 @@ class Game {
 
     // ask player for his name
     // return name
-    private func getPlayerName() -> String {
+    private func getPlayerName(forPlayer number: Int) -> String {
         // get player name
+        print("\nQuel est votre nom Joueur \(number)")
         let name = readLine() ?? ""
 
         // check if player write something
         guard name.isEmpty == false else {
             print("erreur de saisie, recommencer")
-            return getPlayerName()
+            return getPlayerName(forPlayer: number)
         }
 
         // check if name is not already used
         for character in players where character.name.lowercased() == name.lowercased() {
             print("nom déja utilisé, merci de choisir un autre nom")
-            return getPlayerName()
+            return getPlayerName(forPlayer: number)
         }
         // return name of player
+        print("\nBonjour \(name)")
         return name
     }
 

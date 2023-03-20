@@ -39,7 +39,7 @@ class Character {
     // check health value and show result after attack
     func beAttacked(by character: Character) {
         let value = character.weapon.value
-        
+
         if health <= value {
             health = 0
             print("\(name) a été attaqué par \(character.name) et il est mort")
