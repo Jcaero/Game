@@ -30,15 +30,16 @@ class Character {
         return "\(type): un combatant avec \(health) points de vie et une \(weapon.name) de force \(weapon.value)"
     }
 
-    // show statistic of an particular charactere
+    // show statistic of charactere
+    // return in String format
     func getDescriptionWithName() -> String {
         return "\(name), un \(type) : \(health) point de vie / attaque de \(weapon.value)"
     }
 
-    // change the value of health
+    // check health value and show result after attack
     func beAttacked(by character: Character) {
         let value = character.weapon.value
-
+        
         if health <= value {
             health = 0
             print("\(name) a été attaqué par \(character.name) et il est mort")

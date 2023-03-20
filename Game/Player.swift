@@ -12,7 +12,7 @@ class Player {
     let name: String
     var team: [Character]
     
-    // statistic
+    // statistic during a game
     var turn: Int = 0
     var careTurn: Int = 0
     var attackturn: Int { return turn - careTurn }
