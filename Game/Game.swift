@@ -148,8 +148,7 @@ class Game {
         let selection = getNumber(withMax: characters.count) - 1
 
         // return type selected
-        let type = characters[selection].type
-        return type
+        return characters[selection].type
     }
 
     // ask to the player for the name of the character
@@ -230,9 +229,9 @@ class Game {
     // return care or attack
     private func chooseWhichWeaponSpecification() -> WeaponSpecification {
         print("""
-            vous voulez soigner ou attaquer ?
-                1. soigner
-                2. attaquer
+            quelle arme voulez vous utiliser ?
+                1. baguette magique: soigner
+                2. épé: attaquer
             """)
         // ask player to chose care or attack
         let choice = getNumber(withMax: 2)
