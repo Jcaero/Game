@@ -208,24 +208,25 @@ class Game {
         print("\n \(players[0].name) commence le jeu")
     }
 
-    // FUNC selected character alive during the fight
-    // show character alive
-    // identifie the number of charater alive and player can only select the number
-    // return position in the Array
+    // ask player to chose a character alive in player team
+    // return character selected
     private func getAliveCharacter(from player: Player) -> Character {
 
+        // display to player character alive
         player.showPlayerTeamAlive()
+        // count the number of character alive
         let number = player.nombreOfCharacterAlive()
 
+        // ask player to chose a character
         print("Sélectionner votre personnage")
         let index = getNumber(withMax: number) - 1
 
+        // show and return character selected
         print("vous avez selectionné \(player.team[index].name), un \(player.team[index].type)\n")
         return player.team[index]
     }
 
-    // FUNC selected weapon specification
-    // player select number
+    // ask player to selecte weapon specification
     // return care or attack
     private func chooseWhichWeaponSpecification() -> WeaponSpecification {
         print("""
@@ -233,20 +234,23 @@ class Game {
                 1. soigner
                 2. attaquer
             """)
-
+        // ask player to chose care or attack
         let choice = getNumber(withMax: 2)
         return WeaponSpecification(rawValue: choice)!
     }
 
     // check if player give a right number between 1 to number
+    // return right number
     private func getNumber(withMax number: Int) -> Int {
+        // read player's response. if there is no repsonse, put 0
         let readNumber = Int(readLine() ?? "") ?? 0
 
+        // check if response is right: between 1 and passed number
+        // if check is not good, reask player to an other number
         if (readNumber == 0) || (readNumber > number) {
             print("nombre non valide")
             return getNumber(withMax: number)
         }
-
         return readNumber
     }
 
