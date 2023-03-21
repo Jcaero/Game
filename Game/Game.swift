@@ -35,9 +35,8 @@ class Game {
             print("\(name), votre équipe est complète")
         }
 
-        print("\nJeu initialisé, voici les équipes")
-
         // show the team of the 2 players
+        print("\nJeu initialisé, voici les équipes")
         displayPlayersTeam()
     }
 
@@ -45,7 +44,6 @@ class Game {
     private func fight() {
         // define who began the fight
         whoIsStarted()
-
         var attacker = players[0]
         var attacked = players[1]
 
@@ -96,11 +94,11 @@ class Game {
         print("il a attaqué \(winner.attackturn) fois, pour une puissance de \(winner.strength)")
         print("il a soigné \(winner.careTurn) fois")
         print("voici son équipe")
-        winner.showPlayerTeam()
+        winner.showTeam()
 
         print("\n\(looser.name) a perdu")
         print("voici son équipe")
-        looser.showPlayerTeam()
+        looser.showTeam()
     }
 
     // ask player for character type and charactere name
@@ -110,7 +108,7 @@ class Game {
         let maxCharacter = numberOfCharacterInTeam - 1
 
         for index in 0...maxCharacter {
-            
+
             // ask player to select a character Type
             let charactereType = getCharacterType(number: index + 1)
 
@@ -213,7 +211,7 @@ class Game {
     private func getAliveCharacter(from player: Player) -> Character {
 
         // display to player character alive
-        player.showPlayerTeamAlive()
+        player.showTeamAlive()
         // count the number of character alive
         let number = player.nombreOfCharacterAlive()
 
@@ -256,11 +254,11 @@ class Game {
 
     // display players team before the game start
     private func displayPlayersTeam() {
-        let maxPlayers = numberOfPlayerInTheGame - 1
+        let maxPlayers = players.count - 1
 
         for index in 0...maxPlayers {
             print("\n\(players[index].name), votre équipe est composée de:")
-            players[index].showPlayerTeam()
+            players[index].showTeam()
             if index != maxPlayers {
                 print("\ncontre")
             }

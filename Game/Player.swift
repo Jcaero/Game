@@ -25,7 +25,7 @@ class Player {
     }
 
     // show all of the player team
-    func showPlayerTeam() {
+    func showTeam() {
         for (index, character) in team.enumerated() {
             let description = character.getDescriptionWithName()
             print("\(index + 1). \(description)")
@@ -34,7 +34,7 @@ class Player {
 
     // put dead people at the bottom of the array
     // display alive character
-    func showPlayerTeamAlive() {
+    func showTeamAlive() {
         organizeCharacterInTeam()
 
         for (index, character) in team.enumerated() where character.health != 0 {
