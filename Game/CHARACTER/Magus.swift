@@ -13,7 +13,6 @@ class Magus: Character {
     // Init
     init(name: String) {
         super.init(name: name, type: .magus, health: 300, weapon: Sword(value: 5))
-
     }
 
     convenience init() {

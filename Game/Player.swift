@@ -44,7 +44,7 @@ class Player {
     }
 
     // Put the dead character in the end of the array
-    func organizeCharacterInTeam() {
+    private func organizeCharacterInTeam() {
         for (index, character) in team.enumerated() where character.health == 0 {
                 let removeCharacter = team[index]
                 team.remove(at: index)

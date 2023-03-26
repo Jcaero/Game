@@ -57,18 +57,18 @@ class Game {
 
             // choose action attack or care if magus selected
             var shouldHeal = false
-
             if offensiveCharacter is Magus {
                 shouldHeal = shouldBeHealed()
             }
 
-            // if shouldHeal = true care character
-            // else attack character
+            // shouldHeal = true  care   character
+            // shouldHeal = false attack character
             if shouldHeal {
                 let character = offensiveCharacter as! Magus
-                    print("vous pouvez soigner le personnage suivant:")
-                    let healCharacter = getAliveCharacter(from: attacker)
-                    character.heal(healCharacter)
+                // select a character to be care
+                print("vous pouvez soigner le personnage suivant:")
+                let healCharacter = getAliveCharacter(from: attacker)
+                character.heal(healCharacter)
             } else {
                 // select a character to be attacking in attacked player
                 print("vous pouvez attaquer le personnage de \(attacked.name) suivant:")
@@ -128,6 +128,7 @@ class Game {
     }
 
     // ask player for selected a character type
+    // give number : position of character in team
     // return a character type
     private func getCharacterType(number: Int) -> CharacterType {
         // create available character in game
@@ -161,7 +162,7 @@ class Game {
             return getCharacterName()
         }
 
-        // check if name is not already used
+        // check in a Array of stored name if name is not already used
         for storedName in Character.names where storedName == name.lowercased() {
             print("nom déja utilisé")
             return getCharacterName()
@@ -187,7 +188,7 @@ class Game {
             return getPlayerName(forPlayer: number)
         }
 
-        // check if name is not already used
+        // check in a Array of player if name is not already used
         for character in players where character.name.lowercased() == name.lowercased() {
             print("nom déja utilisé, merci de choisir un autre nom")
             return getPlayerName(forPlayer: number)
@@ -224,8 +225,8 @@ class Game {
         return player.team[index]
     }
 
-    // ask player to selecte weapon specification
-    // return care or attack
+    // ask player to selecte between care or attack
+    // return Bool (care / true ; attack false)
     private func shouldBeHealed() -> Bool {
         print("""
             quelle arme voulez vous utiliser ?
