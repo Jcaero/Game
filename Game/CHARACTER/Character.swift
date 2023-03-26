@@ -10,14 +10,14 @@ import Foundation
 class Character {
     // Propriétie
     let name: String
-    let type: String
+    let type: CharacterType
     var health: Int
     let weapon: Weapon
 
     static var names: [String] = []
 
     // INIT
-    init(name: String, type: String, health: Int, weapon: Weapon) {
+    init(name: String, type: CharacterType, health: Int, weapon: Weapon) {
         self.name = name
         self.type = type
         self.health = health
@@ -48,11 +48,10 @@ class Character {
             print("\(name) a été attaqué par \(character.name) et il a perdu \(value) points de vie")
         }
     }
+}
 
-    // be care with value 8
-    func beCare() {
-        health += 8
-        print("\(name) a été soigné et gagne 8 points de vie")
-    }
-
+enum CharacterType: String {
+    case magus = "Mage"
+    case dwarf = "Nain"
+    case warrior = "Guerrier"
 }

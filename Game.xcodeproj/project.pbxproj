@@ -10,7 +10,6 @@
 		4719098C29BCB18200EE96FB /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4719098B29BCB18200EE96FB /* Game.swift */; };
 		47917E7529BC7A180007D5D4 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47917E7429BC7A180007D5D4 /* main.swift */; };
 		47917E7C29BC7A610007D5D4 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47917E7B29BC7A610007D5D4 /* Weapon.swift */; };
-		47917E7F29BC7B160007D5D4 /* WeaponSpecification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47917E7E29BC7B160007D5D4 /* WeaponSpecification.swift */; };
 		47917E8129BC7BBA0007D5D4 /* Axe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47917E8029BC7BBA0007D5D4 /* Axe.swift */; };
 		47917E8529BC7E770007D5D4 /* Sword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47917E8429BC7E770007D5D4 /* Sword.swift */; };
 		47917E8729BC7EB30007D5D4 /* MagicWand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47917E8629BC7EB30007D5D4 /* MagicWand.swift */; };
@@ -38,7 +37,6 @@
 		47917E7129BC7A180007D5D4 /* Game */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Game; sourceTree = BUILT_PRODUCTS_DIR; };
 		47917E7429BC7A180007D5D4 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		47917E7B29BC7A610007D5D4 /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
-		47917E7E29BC7B160007D5D4 /* WeaponSpecification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponSpecification.swift; sourceTree = "<group>"; };
 		47917E8029BC7BBA0007D5D4 /* Axe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Axe.swift; sourceTree = "<group>"; };
 		47917E8429BC7E770007D5D4 /* Sword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sword.swift; sourceTree = "<group>"; };
 		47917E8629BC7EB30007D5D4 /* MagicWand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicWand.swift; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				47917E7B29BC7A610007D5D4 /* Weapon.swift */,
-				47917E7E29BC7B160007D5D4 /* WeaponSpecification.swift */,
 				47917E8029BC7BBA0007D5D4 /* Axe.swift */,
 				47917E8429BC7E770007D5D4 /* Sword.swift */,
 				47917E8629BC7EB30007D5D4 /* MagicWand.swift */,
@@ -181,7 +178,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "
+";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -196,7 +194,6 @@
 				47917E8E29BC81190007D5D4 /* Dwarf.swift in Sources */,
 				47917E8A29BC7F0A0007D5D4 /* Character.swift in Sources */,
 				47917E8C29BC80350007D5D4 /* Magus.swift in Sources */,
-				47917E7F29BC7B160007D5D4 /* WeaponSpecification.swift in Sources */,
 				4719098C29BCB18200EE96FB /* Game.swift in Sources */,
 				47917E9029BC81A00007D5D4 /* Warrior.swift in Sources */,
 				47917E7529BC7A180007D5D4 /* main.swift in Sources */,

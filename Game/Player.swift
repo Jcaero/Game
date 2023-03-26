@@ -72,11 +72,11 @@ class Player {
     }
 
     // upgrade statistic
-    func increaseStratistic(with specification: WeaponSpecification, value: Int) {
+    func increaseStratistic(with heal: Bool, value: Int) {
         turn += 1
-        switch specification {
-        case .care: careTurn += 1
-        case .attack:strength += value
+        switch heal {
+        case true: careTurn += 1
+        case false: strength += value
         }
     }
 }

@@ -8,12 +8,12 @@
 import Foundation
 
 class Magus: Character {
-    // Properties
     let secondWeapon = MagicWand()
 
     // Init
     init(name: String) {
-        super.init(name: name, type: "Mage", health: 300, weapon: Sword(value: 5))
+        super.init(name: name, type: .magus, health: 300, weapon: Sword(value: 5))
+
     }
 
     convenience init() {
@@ -30,5 +30,10 @@ class Magus: Character {
 
     override func getDescriptionWithName() -> String {
         return "\(name), un \(type) : \(health) point de vie / attaque de \(weapon.value) / soin de \(secondWeapon.value)"
+    }
+
+    func heal(_ character: Character) {
+        character.health += secondWeapon.value
+        print("\(character.name) a été soigné et gagne \(secondWeapon.value) points de vie")
     }
 }

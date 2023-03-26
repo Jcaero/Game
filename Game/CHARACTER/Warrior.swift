@@ -9,7 +9,7 @@ import Foundation
 class Warrior: Character {
     // Init
     init(name: String) {
-        super.init(name: name, type: "Guerrier", health: 100, weapon: Sword(value: 10))
+        super.init(name: name, type: .warrior, health: 100, weapon: Sword(value: 10))
     }
 
     convenience init() {

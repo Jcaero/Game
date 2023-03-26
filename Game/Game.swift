@@ -9,11 +9,11 @@ import Foundation
 
 class Game {
     // Propreties
-    var players = [Player]()
-    let numberOfPlayerInTheGame = 2
-    let numberOfCharacterInTeam = 3
+    private var players = [Player]()
+    private let numberOfPlayerInTheGame = 2
+    private let numberOfCharacterInTeam = 3
 
-    init() {
+    func start() {
         initPlayer()
         fight()
         statistic()
@@ -21,6 +21,8 @@ class Game {
 
     // Init of the 2 players
     private func initPlayer() {
+        print("Bonjour")
+
         let maxPlayer = numberOfPlayerInTheGame - 1
         for index in 0...maxPlayer {
 
@@ -47,42 +49,41 @@ class Game {
         var attacker = players[0]
         var attacked = players[1]
 
-        repeat {
+        // fight until player had no character alive
+        while attacker.isAlive() {
             // select attacking character in attacker player
             print("\n\(attacker.name), vous pouvez attaquer avec:")
             let offensiveCharacter = getAliveCharacter(from: attacker)
 
             // choose action attack or care if magus selected
-            var weaponSpecification: WeaponSpecification = .attack
-            if offensiveCharacter.type == "Mage" {
-                weaponSpecification = chooseWhichWeaponSpecification()
+            var shouldHeal = false
+
+            if offensiveCharacter is Magus {
+                shouldHeal = shouldBeHealed()
             }
 
-            switch weaponSpecification {
-            case .attack:
+            // if shouldHeal = true care character
+            // else attack character
+            if shouldHeal {
+                let character = offensiveCharacter as! Magus
+                    print("vous pouvez soigner le personnage suivant:")
+                    let healCharacter = getAliveCharacter(from: attacker)
+                    character.heal(healCharacter)
+            } else {
                 // select a character to be attacking in attacked player
                 print("vous pouvez attaquer le personnage de \(attacked.name) suivant:")
                 let defensiveCharacter = getAliveCharacter(from: attacked)
                 defensiveCharacter.beAttacked(by: offensiveCharacter)
-
-            case .care:
-                // select character to care in attacking team
-                print("vous pouvez soigner le personnage suivant:")
-                let offensiveCharacter = getAliveCharacter(from: attacker)
-                offensiveCharacter.beCare()
             }
 
             // increase statistic of attacker player
             let weaponValue = offensiveCharacter.weapon.value
-            attacker.increaseStratistic(with: weaponSpecification, value: weaponValue)
-
+            attacker.increaseStratistic(with: shouldHeal, value: weaponValue)
             // change player who attack
             players.swapAt(0, 1)
             attacker = players[0]
             attacked = players[1]
-
-            // fight until player had no character alive
-        } while attacker.isAlive()
+        }
     }
 
     // show staistic of the 2 players
@@ -117,10 +118,9 @@ class Game {
 
             // create character selected
             switch charactereType {
-            case "Guerrier" : team.append(Warrior(name: charactereName))
-            case "Nain" : team.append(Dwarf(name: charactereName))
-            case "Mage" : team.append(Magus(name: charactereName))
-            default: print("erreur ")
+            case .warrior: team.append(Warrior(name: charactereName))
+            case .dwarf: team.append(Dwarf(name: charactereName))
+            case .magus: team.append(Magus(name: charactereName))
             }
             print("vous avez crée \(team[index].name) de type \(team[index].type)\n")
         }
@@ -129,7 +129,7 @@ class Game {
 
     // ask player for selected a character type
     // return a character type
-    private func getCharacterType(number: Int) -> String {
+    private func getCharacterType(number: Int) -> CharacterType {
         // create available character in game
         let characters = [Warrior(), Dwarf(), Magus()]
 
@@ -226,7 +226,7 @@ class Game {
 
     // ask player to selecte weapon specification
     // return care or attack
-    private func chooseWhichWeaponSpecification() -> WeaponSpecification {
+    private func shouldBeHealed() -> Bool {
         print("""
             quelle arme voulez vous utiliser ?
                 1. baguette magique: soigner
@@ -234,7 +234,8 @@ class Game {
             """)
         // ask player to chose care or attack
         let choice = getNumber(withMax: 2)
-        return WeaponSpecification(rawValue: choice)!
+        let result = (choice == 1) ? true : false
+        return result
     }
 
     // check if player give a right number between 1 to number

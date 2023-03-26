@@ -11,12 +11,10 @@ class Weapon {
     // Properties
     let name: String
     let value: Int
-    let specification: WeaponSpecification
 
     // INIT
-    init(name: String, value: Int, specification: WeaponSpecification) {
+    init(name: String, value: Int) {
         self.name = name
         self.value = value
-        self.specification = specification
     }
 }
